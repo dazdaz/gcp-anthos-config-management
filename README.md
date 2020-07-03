@@ -1,4 +1,5 @@
-### Presuming that steps followed to deploy ACM, this guide focuses on how to use ACM
+### Howto use ACM
+* Presuming that steps followed to deploy ACM, this guide focuses on how to use ACM
 
 ### Check that all pods are running
 kubectl get pods -n config-management-system --show-labels
