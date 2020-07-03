@@ -1,6 +1,37 @@
+
 ### Download nomos for your OS - Linux, OSX, Windows
 https://cloud.google.com/anthos-config-management/downloads
 
+### Create SSH Key for ACM
+```
+ssh-keygen -t rsa -b 4096 -C "Anthos ACM Key" -N '' -f ./anthos-acm-key
+kubectl create secret generic git-creds \
+ --namespace=config-management-system \
+ --from-file=ssh=./anthos-acm-key
+```
+
+### Register Key here - cat anthos-acm-key.pub
+### https://source.cloud.google.com/user/ssh_keys
+
+### Confirm authentication
+```
+$ ssh -v -T -l <username@domain>@source.developers.google.com -i ./anthos-acm-key -p 2022
+```
+
+# Source Code repo
+# https://source.cloud.google.com/daev-anthosop-070520/acm-demo
+
+### Create a cloud source repo:
+```
+gcloud source repos create acm-demo
+Clone the repository and change directory into the cloned repo:
+gcloud source repos clone acm-demo
+cd acm-demo
+```
+
+### Initialize the repository using nomos
+* This creates the basic directory structure used by the Anthos Configuration Management operator.
+* Specifically, this creates the ./system, ./cluster, ./clusteregistry, and ./namespaces directories.
 ```
 mkdir acm-demo
 cd acm-demo
@@ -34,9 +65,29 @@ status:
 EOF
 ```
 
+# Add all new/changed files to the cloned repo, commit with a message, and push the change to the master branch:
+```
+git add .
+git commit -m 'Adding initial files for nomos'
+git push
+```
+
+### Check logs for troubleshooting
+```
+kubectl logs -n config-management-system -l app=git-importer -c importer
+kubectl logs --selector app=syncer -n config-management-system --tail=10000
+kubectl logs --selector app=monitor -n config-management-system --tail=10000
+kubectl logs --selector app=git-importer -n config-management-system
+```
+
+### Check that all pods are running
+kubectl get pods -n config-management-system --show-labels
+
 ### Watch namespace, Delete namespace, See namespace come back to life
 ```
 # Run these commands in separate terminals
 kubectl get ns --watch
 kubectl delete ns production
 ```
+
+https://github.com/GoogleCloudPlatform/gke-anthos-holistic-demo/blob/master/anthos/README.md
