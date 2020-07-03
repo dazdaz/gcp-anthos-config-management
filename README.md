@@ -34,6 +34,7 @@ EOF
 
 ### Watch namespace, Delete namespace, See namespace come back to life
 ```
+# Run these commands in separate terminals
 kubectl get ns --watch
 kubectl delete ns production
 ```
