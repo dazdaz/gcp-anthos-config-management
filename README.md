@@ -1,3 +1,5 @@
+### Download nomos for your OS - Linux, OSX, Windows
+https://cloud.google.com/anthos-config-management/downloads
 
 ```
 mkdir acm-demo
