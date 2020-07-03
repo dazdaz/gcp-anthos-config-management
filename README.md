@@ -18,8 +18,8 @@ kubectl create secret generic git-creds \
 $ ssh -v -T -l <username@domain>@source.developers.google.com -i ./anthos-acm-key -p 2022
 ```
 
-# Source Code repo
-# https://source.cloud.google.com/daev-anthosop-070520/acm-demo
+### Source Code repo
+https://source.cloud.google.com/<projectname>/acm-demo
 
 ### Create a cloud source repo:
 ```
@@ -65,7 +65,7 @@ status:
 EOF
 ```
 
-# Add all new/changed files to the cloned repo, commit with a message, and push the change to the master branch:
+### Add all new/changed files to the cloned repo, commit with a message, and push the change to the master branch:
 ```
 git add .
 git commit -m 'Adding initial files for nomos'
