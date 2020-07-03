@@ -2,7 +2,9 @@
 * Presuming that steps followed to deploy ACM, this guide focuses on how to use ACM
 
 ### Check that all pods are running
+```
 kubectl get pods -n config-management-system --show-labels
+```
 
 ### Download nomos for your OS - Linux, OSX, Windows
 https://cloud.google.com/anthos-config-management/downloads
