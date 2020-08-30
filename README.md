@@ -94,4 +94,9 @@ kubectl logs --selector app=monitor -n config-management-system --tail=10000
 kubectl logs --selector app=git-importer -n config-management-system
 ```
 
+### Change the git-repo that my acm is pointing
+```
+kubectl edit ConfigManagement config-management
+```
+
 https://github.com/GoogleCloudPlatform/gke-anthos-holistic-demo/blob/master/anthos/README.md
